@@ -21,7 +21,7 @@ function Register() {
             password,
             aboutMe
         })
-        res.data && window.location.replace('https://blog-den-backend.herokuapp.com/api/auth/login')
+        res.data && window.location.replace('https://blog-den-backend.herokuapp.com/api/posts')
         } catch (err) {
             setError(true)
         }
