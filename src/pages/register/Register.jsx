@@ -1,9 +1,10 @@
 import  './register.css'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
 function Register() {
+    const history = useHistory();
     const [username, setUsername]= useState('')
     const [email, setEmail]= useState('')
     const [password, setPassword]= useState('')
@@ -21,7 +22,7 @@ function Register() {
             password,
             aboutMe
         })
-        res.data && window.location.replace('https://blog-den-backend.herokuapp.com/api/posts')
+        res.data &&  history.push('/login')
         } catch (err) {
             setError(true)
         }
