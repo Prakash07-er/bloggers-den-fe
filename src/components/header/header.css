@@ -1,0 +1,105 @@
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url("../../images/hero-bg1.jpeg") top center;
+    background-size: cover;
+    position: relative;
+    padding: 0;
+  }
+
+  #hero .col-lg-8{
+      text-align: left;
+      margin-top: 1.5rem ;
+  }
+  #hero .container {
+    padding-top: 10px;
+  }
+  
+  @media (max-width: 992px) {
+    #hero .container {
+      padding-top: 98px;
+    }
+  }
+  
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  #hero h1 span {
+    color: #cda45e;
+  }
+  
+  #hero h2 {
+    color: #eee;
+    margin-bottom: 10px 0 0 0;
+    font-size: 22px;
+  }
+  
+  #hero .btns {
+    margin-top: 30px;
+    cursor: pointer;
+  }
+  
+  #hero .btn-menu, #hero .btn-book {
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    /* display: inline-block; */
+    padding: 12px 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+    line-height: 1;
+    color: white;
+    border: 2px solid #cda45e;
+    cursor: pointer;
+  }
+  
+  #hero .btn-menu:hover, #hero .btn-book:hover {
+    background: #cda45e;
+    color: #fff;
+  }
+  
+  #hero .btn-book {
+    margin-left: 15px;
+  }
+  
+
+  @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    #hero .play-btn {
+      margin-top: 30px;
+    }
+  }
+  
+  @media (max-height: 500px) {
+    #hero {
+      height: auto;
+    }
+    #hero .container {
+      padding-top: 130px;
+      padding-bottom: 60px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #hero h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    #hero h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+  

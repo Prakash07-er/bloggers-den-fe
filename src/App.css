@@ -1,0 +1,10 @@
+*{
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+body{
+    background: rgb(214, 235, 235);
+}
