@@ -13,7 +13,6 @@ function SinglePost() {
    const {user} = useContext(Context)
    const [title, setTitle] = useState('')
    const [desc, setDesc] = useState('')
-   const [image, setImage] = useState('')
    const [updateMode, setUpdateMode] = useState(false)
 
    useEffect(() => {
@@ -22,7 +21,6 @@ function SinglePost() {
             setPost(res.data)
             setTitle(res.data.title)
             setDesc(res.data.desc)
-            setImage(res.data.image)
         }
         getPost()
    },[path])
