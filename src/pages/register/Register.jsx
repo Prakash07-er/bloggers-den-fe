@@ -1,7 +1,7 @@
 import  './register.css'
 import {Link, useHistory} from 'react-router-dom'
 import { useState } from 'react'
-import axios from 'axios'
+import axios from '../../apiConnect'
 
 function Register() {
     const history = useHistory();
@@ -16,7 +16,7 @@ function Register() {
         setError(false)
 
         try {
-            const res =await axios.post('https://blog-den-backend.herokuapp.com/api/auth/register', {
+            const res =await axios.post('/api/auth/register', {
             username,
             email,
             password,

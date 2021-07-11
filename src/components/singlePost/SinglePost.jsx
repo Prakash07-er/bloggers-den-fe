@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import  './singlePost.css'
-import axios from 'axios'
+import axios from '../../apiConnect'
 import {Link} from 'react-router-dom'
 import { useContext } from 'react'
 import { Context } from '../../context/Context'
@@ -11,24 +11,25 @@ function SinglePost() {
    const path = location.pathname.split('/')[2]
    const [post, setPost] = useState({})
    const {user} = useContext(Context)
-   const PF = 'http://localhost:5000/images/'
    const [title, setTitle] = useState('')
    const [desc, setDesc] = useState('')
+   const [image, setImage] = useState('')
    const [updateMode, setUpdateMode] = useState(false)
 
    useEffect(() => {
         const getPost = async () =>  {
-            const res = await axios.get('/posts/' + path)
+            const res = await axios.get('/api/posts/' + path)
             setPost(res.data)
             setTitle(res.data.title)
             setDesc(res.data.desc)
+            setImage(res.data.image)
         }
         getPost()
    },[path])
 
    const handleDelete =async() => {
        try {
-            await axios.delete('/posts/' + path, {data:{username: user.username}})
+            await axios.delete('/api/posts/' + path, {data:{username: user.username}})
              window.location.replace("/" )
        } catch (err) {
            
@@ -36,7 +37,7 @@ function SinglePost() {
    }
    const handleUpdate =async () => {
     try {
-        await axios.put('/posts/' + path, {username: user.username, title, desc})
+        await axios.put('/api/posts/' + path, {username: user.username, title, desc})
         setUpdateMode(false)
    } catch (err) {
        
@@ -49,7 +50,7 @@ function SinglePost() {
                 {
                     post.photo && (
                         <img className='singlePostImg' 
-                        src={PF + post.photo} 
+                        src={post.photo} 
                         alt='' />
 
                     )

@@ -8,9 +8,32 @@ import {Context} from '../../context/Context'
 function Write() {
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
-    const [file, setFile] = useState(null)
+    const [image, setImage] = useState("")
     const {user} = useContext(Context)
     const history = useHistory("")
+
+
+    // upload image section
+    const handleUpload = async e => {
+        e.preventDefault()
+        try {
+            const file = e.target.files[0]
+
+            let formData = new FormData()
+            formData.append('file', file)
+
+            const image_data = await axios.post('/upload' , formData, {
+                headers:{
+                    'content-type' : 'multipart/form-data'
+                }
+            })
+            setImage(image_data.data.url)
+
+        } catch (err) {
+            alert(err.response.data.msg)
+        }
+    }  
+
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -19,44 +42,30 @@ function Write() {
             username: user.username,
             title,
             desc,
-        }
-        if(file){
-            const data =new FormData()
-            const filename = Date.now() + file.name
-            data.append("name", filename)
-            data.append("file", file)
-            newPost.photo = filename
-            try {
-                await axios.post('https://blog-den-backend.herokuapp.com/api/upload' ,data )
-            } catch (err) {
-                
-            }
-        }
+            photo:image
+        }   
+      
         try {
-            axios.post('https://blog-den-backend.herokuapp.com/api/posts' , newPost)
-        history.push('https://blog-den-backend.herokuapp.com/api/')
+            axios.post('/api/posts' , newPost)
+        history.push('/')
 
         } catch (err) {
             
         }
+        
     }
 
     return (
         <div className='write'>
-            {
-                file && (
-                     <img className='writeImg'
-                        src={URL.createObjectURL(file)}
-                        alt=''  />
-                )
-            }
-           
+          <img className='writeImg' src={image} alt=''  />
+                
+  
             <form className='writeForm' onSubmit={handleSubmit}>
-                <div className="writeFormGroup">
-                    <label htmlFor='fileInput'>
+                <div className="writeFormGroup">    
+                    <label htmlFor='file_up'>
                         <i class="writeicon fas fa-plus"></i>
                     </label>
-                    <input type='file' id='fileInput' style={{display:'none'}} onChange={(e) => setFile(e.target.files[0])} />
+                    <input type='file' name="file" id="file_up" style={{display:'none'}} onChange={handleUpload} />
                     <input type='text' placeholder='Title' className='writeInput' autoFocus={true} onChange={e => setTitle(e.target.value)} />
                 </div>
                 <div className="writeFormGroup">

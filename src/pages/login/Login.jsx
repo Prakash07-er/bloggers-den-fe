@@ -2,7 +2,7 @@ import  './login.css'
 import {Link} from 'react-router-dom'
 import { useContext, useRef } from 'react'
 import { Context } from '../../context/Context'
-import axios from 'axios'
+import axios from '../../apiConnect'
 
 function Login() {
 
@@ -16,7 +16,7 @@ function Login() {
             type:"LOGIN_START"
         })
         try {
-            const res = await axios.post('https://blog-den-backend.herokuapp.com/api/auth/login', {
+            const res = await axios.post('/api/auth/login', {
                 username: userRef.current.value,
                 password: passwordRef.current.value
             })

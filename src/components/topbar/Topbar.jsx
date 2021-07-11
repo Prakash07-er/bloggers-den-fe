@@ -6,13 +6,14 @@ import { Context } from '../../context/Context';
 
 function Topbar() {
     const { user , dispatch} = useContext(Context)
-    const PF = 'http://localhost:5000/images/'
+
 
     const handleLogout =() => {
         dispatch({
             type: "LOGOUT"
         })
     }
+
 
     return (
         <div className="top">
@@ -25,7 +26,7 @@ function Topbar() {
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem">  
-                        <a href='/' className='link'> HOME </a>
+                        <Link to='/' className='link'> HOME </Link>
                     </li>
                     <li className="topListItem">  
                         <a href='/#about' className='link'> ABOUT </a>
@@ -46,7 +47,7 @@ function Topbar() {
                 {
                     user ? 
                     <Link to='/settings'>
-                        <img className="topImg" src={PF + user.profilePic} alt="" /> 
+                        <img className="topImg" src={user.profilePic} alt="" /> 
                     </Link>
                     :
                     <Link to='/register'>
